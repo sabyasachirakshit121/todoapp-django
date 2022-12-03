@@ -29,29 +29,30 @@
     </nav>
     <div class="container row align-items-center justify-content-center">
         <h1>My To Do List</h1>
+        <a href="{% url 'demo' %}">Connect to Google Calendar</a>
     </div>
     <div class="row align-items-center justify-content-center">
-    <form action="/addTodoItem/" method="post">{% csrf_token %}
-        <input type="text" id="addField" name="content" placeholder="Write your task here..">
-        <input type="submit" value="Add Task">
-    </form>
+        <form action="/addTodoItem/" method="post">{% csrf_token %}
+            <input type="text" id="addField" name="content" placeholder="Write your task here..">
+            <input type="submit" value="Add Task">
+        </form>
     </div>
     <div class="row align-items-center justify-content-center">
-    <ul>
-        {% for i in all_items %}
-        <li>{{i.title}} <form action="/updateTodoItem/{{i.id}}/" method="post">{% csrf_token %}
-                <input type="text" name="content" placeholder="Update your task here..">
-                <input type="submit" value="Update This Task">
-            </form>
-            <br/>
-            <form action="/deleteTodoItem/{{i.id}}/" method="post">{% csrf_token %}
-                <input type="submit" value="Delete This Task">
-            </form>
-        </li>
-        {% endfor %}
-    </ul>
+        <ul>
+            {% for i in all_items %}
+            <li>{{i.title}} <form action="/updateTodoItem/{{i.id}}/" method="post">{% csrf_token %}
+                    <input type="text" name="content" placeholder="Update your task here..">
+                    <input type="submit" value="Update This Task">
+                </form>
+                <br />
+                <form action="/deleteTodoItem/{{i.id}}/" method="post">{% csrf_token %}
+                    <input type="submit" value="Delete This Task">
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
